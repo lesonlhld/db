@@ -85,7 +85,7 @@ public class CartItemDaoImpl extends JDBCConnection implements CartItemDao {
 
 	@Override
 	public CartItem get(int id) {
-		String sql = "SELECT oi.order_id, oi.quantity, oi.unit_price, o.user_id, o.order_date, o.status, p.name, p.price " 
+		String sql = "SELECT oi.order_id, oi.quantity, oi.unit_price, o.user_id, o.order_time, o.order_date, o.order_status_id, p.product_name, p.price " 
 				+ "FROM order_items oi, orders o, products p "
 				+ "WHERE oi.order_id = o.order_id AND oi.product_id = p.product_id AND oi.order_id = ?";
 		Connection con = super.getJDBCConnection();
@@ -97,15 +97,16 @@ public class CartItemDaoImpl extends JDBCConnection implements CartItemDao {
 
 			while (rs.next()) {
 				User user = userDao.get(rs.getInt("user_id"));
-				OrderStatus status = statusDao.get(rs.getInt("status"));
+				OrderStatus status = statusDao.get(rs.getInt("order_status_id"));
 				
 				Cart cart = new Cart();
 				cart.setBuyer(user);
 				cart.setBuyDate(rs.getDate("order_date"));
+				cart.setBuyTime(rs.getTime("order_time"));
 				cart.setStatus(status);
 				
 				Product product = new Product();
-				product.setName(rs.getString("name"));
+				product.setName(rs.getString("product_name"));
 				product.setPrice(rs.getInt("price"));
 								
 				CartItem cartItem = new CartItem();
@@ -125,7 +126,7 @@ public class CartItemDaoImpl extends JDBCConnection implements CartItemDao {
 	@Override
 	public List<CartItem> getAll() {
 		List<CartItem> cartItemList = new ArrayList<CartItem>();
-		String sql = "SELECT oi.order_id, oi.quantity, oi.unit_price, o.user_id, o.order_date, o.status, p.name, p.price " 
+		String sql = "SELECT oi.order_id, oi.quantity, oi.unit_price, o.user_id, o.order_time, o.order_date, o.order_status_id, p.product_name, p.price " 
 				+ "FROM order_items oi, orders o, products p "
 				+ "WHERE oi.order_id = o.order_id AND oi.product_id = p.product_id";
 		Connection con = super.getJDBCConnection();
@@ -136,15 +137,17 @@ public class CartItemDaoImpl extends JDBCConnection implements CartItemDao {
 
 			while (rs.next()) {
 				User user = userDao.get(rs.getInt("user_id"));
-				OrderStatus status = statusDao.get(rs.getInt("status"));
+				OrderStatus status = statusDao.get(rs.getInt("order_status_id"));
 				
 				Cart cart = new Cart();
+				cart.setId(rs.getInt("order_id"));
 				cart.setBuyer(user);
 				cart.setBuyDate(rs.getDate("order_date"));
+				cart.setBuyTime(rs.getTime("order_time"));
 				cart.setStatus(status);
 				
 				Product product = new Product();
-				product.setName(rs.getString("name"));
+				product.setName(rs.getString("product_name"));
 				product.setPrice(rs.getInt("price"));
 				
 				

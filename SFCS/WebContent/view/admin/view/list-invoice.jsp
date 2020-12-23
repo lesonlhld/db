@@ -53,28 +53,32 @@
 										<thead>
 											<tr>
 												<th>Index</th>
-												<th>Order ID</th>
+												<th>Invoice ID</th>
 												<th>Buyer</th>
 												<th>Order Date</th>
 												<th>Order Time</th>
-												<th>Status</th>
+												<th>Voucher</th>
+												<th>Total Money</th>
+												<th>Payment Method</th>
 												<th>Action</th>
 											</tr>
 										</thead>
 										<tbody>
 											<c:set var="index" value="${0}" />
-											<c:forEach items="${listCart }" var="list">
+											<c:forEach items="${listInvoice }" var="list">
 												<tr class="odd gradeX">
 													<c:set var="index" value="${index + 1}" />
 													<td>${index }</td>
 													<td>${list.id }</td>
-													<td>${list.buyer.username }</td>
-													<td>${list.buyDate }</td>
-													<td>${list.buyTime }</td>
-													<td class="center">${list.status.name }</td>
+													<td>${list.cart.buyer.username }</td>
+													<td>${list.invoiceDate }</td>
+													<td>${list.invoiceTime }</td>
+													<td>${list.voucher }</td>
+													<td>${list.totalMoney }</td>
+													<td>${list.paymentMethod.name }</td>
 													<td>
-														<a href="<c:url value='/admin/order/edit?id=${list.id }'/>" class="center">Edit</a> | 
-														<a href="<c:url value='/admin/order/delete?id=${list.id }'/>" class="center">Delete</a>
+														<a href="<c:url value='/admin/invoice/edit?id=${list.id }'/>" class="center">Edit</a> | 
+														<a href="<c:url value='/admin/invoice/delete?id=${list.id }'/>" class="center">Delete</a>
 													</td>
 												</tr>
 											</c:forEach>

@@ -7,20 +7,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import dao.OrderStatusDao;
+import dao.PaymentDao;
 import jdbc.JDBCConnection;
-import model.OrderStatus;
+import model.Payment;
 
-public class OrderStatusDaoImpl extends JDBCConnection implements OrderStatusDao {
+public class PaymentDaoImpl extends JDBCConnection implements PaymentDao {
 
 	@Override
-	public void insert(OrderStatus orderStatus) {
-		String sql = "INSERT INTO order_statuses(order_status_name) VALUES (?)";
+	public void insert(Payment payment) {
+		String sql = "INSERT INTO payments(payment_method) VALUES (?)";
 		Connection con = super.getJDBCConnection();
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, orderStatus.getName());
+			ps.setString(1, payment.getName());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -28,14 +28,14 @@ public class OrderStatusDaoImpl extends JDBCConnection implements OrderStatusDao
 	}
 
 	@Override
-	public void edit(OrderStatus orderStatus) {
-		String sql = "UPDATE order_statuses SET order_status_name = ? WHERE order_status_id = ?";
+	public void edit(Payment payment) {
+		String sql = "UPDATE payments SET payment_method = ? WHERE payment_id = ?";
 		Connection con = super.getJDBCConnection();
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, orderStatus.getName());
-			ps.setInt(2, orderStatus.getId());
+			ps.setString(1, payment.getName());
+			ps.setInt(2, payment.getId());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -44,7 +44,7 @@ public class OrderStatusDaoImpl extends JDBCConnection implements OrderStatusDao
 
 	@Override
 	public void delete(int id) {
-		String sql = "DELETE FROM order_statuses WHERE order_status_id = ?";
+		String sql = "DELETE FROM payments WHERE payment_id = ?";
 		Connection con = super.getJDBCConnection();
 
 		try {
@@ -57,8 +57,8 @@ public class OrderStatusDaoImpl extends JDBCConnection implements OrderStatusDao
 	}
 
 	@Override
-	public OrderStatus get(int id) {
-		String sql = "SELECT * FROM order_statuses WHERE order_status_id = ? ";
+	public Payment get(int id) {
+		String sql = "SELECT * FROM payments WHERE payment_id = ?";
 		Connection con = super.getJDBCConnection();
 
 		try {
@@ -67,12 +67,12 @@ public class OrderStatusDaoImpl extends JDBCConnection implements OrderStatusDao
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				OrderStatus OrderStatus = new OrderStatus();
+				Payment payment = new Payment();
 
-				OrderStatus.setId(rs.getInt("order_status_id"));
-				OrderStatus.setName(rs.getString("order_status_name"));
+				payment.setId(rs.getInt("payment_id"));
+				payment.setName(rs.getString("payment_method"));
 
-				return OrderStatus;
+				return payment;
 
 			}
 		} catch (SQLException e) {
@@ -82,9 +82,9 @@ public class OrderStatusDaoImpl extends JDBCConnection implements OrderStatusDao
 	}
 
 	@Override
-	public List<OrderStatus> getAll() {
-		List<OrderStatus> orderStatuses = new ArrayList<OrderStatus>();
-		String sql = "SELECT * FROM order_statuses";
+	public List<Payment> getAll() {
+		List<Payment> payments = new ArrayList<Payment>();
+		String sql = "SELECT * FROM payments";
 		Connection conn = super.getJDBCConnection();
 
 		try {
@@ -92,25 +92,25 @@ public class OrderStatusDaoImpl extends JDBCConnection implements OrderStatusDao
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				OrderStatus orderStatus = new OrderStatus();
+				Payment payment = new Payment();
 
-				orderStatus.setId(rs.getInt("order_status_id"));
-				orderStatus.setName(rs.getString("order_status_name"));
+				payment.setId(rs.getInt("payment_id"));
+				payment.setName(rs.getString("payment_method"));
 
-				orderStatuses.add(orderStatus);
+				payments.add(payment);
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		return orderStatuses;
+		return payments;
 	}
 
 	@Override
-	public List<OrderStatus> search(String keyword) {
-		List<OrderStatus> orderStatuses = new ArrayList<OrderStatus>();
-		String sql = "SELECT * FROM order_statuses WHERE order_status_name LIKE ? ";
+	public List<Payment> search(String keyword) {
+		List<Payment> payments = new ArrayList<Payment>();
+		String sql = "SELECT * FROM payments WHERE payment_method LIKE ?";
 		Connection conn = super.getJDBCConnection();
 
 		try {
@@ -119,24 +119,24 @@ public class OrderStatusDaoImpl extends JDBCConnection implements OrderStatusDao
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				OrderStatus orderStatus = new OrderStatus();
+				Payment payment = new Payment();
 
-				orderStatus.setId(rs.getInt("order_status_id"));
-				orderStatus.setName(rs.getString("order_status_name"));
+				payment.setId(rs.getInt("id"));
+				payment.setName(rs.getString("payment_method"));
 
-				orderStatuses.add(orderStatus);
+				payments.add(payment);
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		return orderStatuses;
+		return payments;
 	}
 
 	@Override
-	public OrderStatus get(String name) {
-		String sql = "SELECT * FROM order_statuses WHERE order_status_name = ?";
+	public Payment get(String name) {
+		String sql = "SELECT * FROM payments WHERE payment_method LIKE ?";
 		Connection con = super.getJDBCConnection();
 
 		try {
@@ -145,12 +145,12 @@ public class OrderStatusDaoImpl extends JDBCConnection implements OrderStatusDao
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				OrderStatus orderStatus = new OrderStatus();
+				Payment payment = new Payment();
 
-				orderStatus.setId(rs.getInt("order_status_id"));
-				orderStatus.setName(rs.getString("order_status_name"));
+				payment.setId(rs.getInt("payment_id"));
+				payment.setName(rs.getString("payment_method"));
 
-				return orderStatus;
+				return payment;
 
 			}
 		} catch (SQLException e) {

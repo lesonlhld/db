@@ -16,9 +16,11 @@
 					<li><a href="${pageContext.request.contextPath }/admin/category/list"><i
 							class="fa fa-indent fa-3x"></i>Category Management</a></li>
 					<li><a href="${pageContext.request.contextPath }/admin/stall/list"><i
-							class="fa fa-bar-chart-o fa-3x"></i>Stall Management</a></li>
+							class="fa fa-users fa-3x"></i>Stall Management</a></li>
 					<li><a href="${pageContext.request.contextPath }/admin/order/list"><i
-							class="fa fa-barcode fa-3x"></i> Order Management</a></li>														
+							class="fa fa-shopping-cart fa-3x"></i> Order Management</a></li>		
+					<li><a href="${pageContext.request.contextPath }/admin/invoice/list"><i
+							class="fa fa-bar-chart-o fa-3x"></i> Invoice Management</a></li>														
 					<li><a href="table.html"><i class="fa fa-table fa-3x"></i>
 							Table Examples</a></li>
 					<li><a href="form.html"><i class="fa fa-edit fa-3x"></i>

@@ -78,9 +78,9 @@ public class CartDaoImpl extends JDBCConnection implements CartDao {
 
 	@Override
 	public Cart get(int id) {
-		String sql = "SELECT o.order_id, o.order_date, o.order_time, u.user_id, u.username, u.email, os.order_status_id, os.name "
+		String sql = "SELECT o.order_id, o.order_date, o.order_time, u.user_id, u.username, u.email, os.order_status_id, os.order_status_name "
 				+ "FROM orders o, users u, order_statuses os "
-				+ "WHERE o.user_id = u.user_id AND o.status = os.order_status_id AND o.order_id = ?";
+				+ "WHERE o.user_id = u.user_id AND o.order_status_id = os.order_status_id AND o.order_id = ?";
 		Connection con = super.getJDBCConnection();
 
 		try {
@@ -111,9 +111,9 @@ public class CartDaoImpl extends JDBCConnection implements CartDao {
 	@Override
 	public List<Cart> getAll() {
 		List<Cart> cartList = new ArrayList<Cart>();
-		String sql = "SELECT o.order_id, o.order_date, o.order_time, u.user_id, u.username, u.email, os.order_status_id, os.name "
+		String sql = "SELECT o.order_id, o.order_date, o.order_time, u.user_id, u.username, u.email, os.order_status_id, os.order_status_name "
 				+ "FROM orders o, users u, order_statuses os "
-				+ "WHERE o.user_id = u.user_id AND o.status = os.order_status_id";
+				+ "WHERE o.user_id = u.user_id AND o.order_status_id = os.order_status_id";
 		Connection con = super.getJDBCConnection();
 
 		try {
@@ -134,17 +134,18 @@ public class CartDaoImpl extends JDBCConnection implements CartDao {
 				cartList.add(cart);
 
 			}
+			return cartList;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return cartList;
+		return null;
 	}
 
 	public List<Cart> search(String name) {
 		List<Cart> cartList = new ArrayList<Cart>();
-		String sql = "SELECT o.order_id, o.order_date, o.order_time, u.user_id, u.username, u.email, os.order_status_id, os.name "
+		String sql = "SELECT o.order_id, o.order_date, o.order_time, u.user_id, u.username, u.email, os.order_status_id, os.order_status_name "
 				+ "FROM orders o, users u, order_statuses os "
-				+ "WHERE o.user_id = u.user_id AND o.status = os.order_status_id AND u.email LIKE ?";
+				+ "WHERE o.user_id = u.user_id AND o.order_status_id = os.order_status_id AND u.email LIKE ?";
 		Connection con = super.getJDBCConnection();
 
 		try {
@@ -165,10 +166,11 @@ public class CartDaoImpl extends JDBCConnection implements CartDao {
 				cartList.add(cart);
 
 			}
+			return cartList;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return cartList;
+		return null;
 	}
 
 	@Override
