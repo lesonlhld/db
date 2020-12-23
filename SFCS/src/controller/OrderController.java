@@ -101,6 +101,7 @@ public class OrderController extends HttpServlet {
 			invoiceService.insert(invoice);
 			
 	        session.removeAttribute("cart");
+	        resp.sendRedirect(returnURL);
 	        //resp.sendRedirect(url);
 		} catch (Exception e) {
 			e.printStackTrace();
