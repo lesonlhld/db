@@ -13,7 +13,7 @@ public interface CartItemDao {
 
 	CartItem get(String name);
 
-	CartItem get(int id);
+	List<CartItem> get(int id);
 
 	List<CartItem> getAll();
 

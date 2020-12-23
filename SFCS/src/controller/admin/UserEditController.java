@@ -16,13 +16,18 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import model.Product;
 import model.User;
+import model.Role;
 import service.UserService;
 import service.impl.UserServiceImpl;
+import service.RoleService;
+import service.impl.RoleServiceImpl;
 
 @WebServlet(urlPatterns = { "/admin/user/edit" })
 public class UserEditController extends HttpServlet {
 	UserService userService = new UserServiceImpl();
+	RoleService roleService = new RoleServiceImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,6 +37,10 @@ public class UserEditController extends HttpServlet {
 		int id = Integer.parseInt(req.getParameter("id"));
 		User user = userService.get(id);
 		req.setAttribute("user", user);
+		
+		List<Role> roleList = roleService.getAll();
+		req.setAttribute("roleList", roleList);
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/view/admin/view/edit-user.jsp");
 		dispatcher.forward(req, resp);
 	}

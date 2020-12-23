@@ -25,26 +25,6 @@ public class ProductDaoImpl extends JDBCConnection implements ProductDao {
 	public void insert(Product product) {
 		//String sql = "INSERT INTO products(product_name, price, quantity, discount, category_id, stall_id, description, image) VALUES (?,?,?,?,?,?,?,?)";
 		String sql = "CALL insert_product(?,?,?,?,?,?,?,?)";
-		
-		/*DROP PROCEDURE IF EXISTS insert_product;
-		DELIMITER $$
-		CREATE PROCEDURE insert_product(
-				product_name varchar(255),
-				price int,
-				quantity int,
-				discount float,
-				category_id int,
-				stall_id int,
-				description varchar(2000),
-				image varchar(50)
-		)
-		BEGIN
-			INSERT INTO products(product_name, price, quantity, discount, category_id, stall_id, description, image)
-		  VALUES (product_name, price, quantity, discount, category_id, stall_id, description, image);
-		END$$
-		DELIMITER ;
-		*/
-		
 		Connection con = super.getJDBCConnection();
 
 		try {

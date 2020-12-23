@@ -88,13 +88,17 @@
 											<div class="form-group">
 												<label>Role</label>
 												<div class="checkbox">
-													<label> <input type="radio" value="1" name="role" checked="checked" />Customer</label><br>
-													<label> <input type="radio" value="2" name="role" />Admin</label><br>
-													<label> <input type="radio" value="1" name="role" />Cook</label><br>
-													<label> <input type="radio" value="2" name="role" />Vendor</label><br>
-													<label> <input type="radio" value="2" name="role" />Manager</label>
+													<c:forEach items="${roleList }" var="r">
+														<c:choose>
+															<c:when test="${user.roleId == r.id}">
+																<label> <input type="radio" value=${r.id } name="role" checked="checked" />${r.name } </label><br>
+															</c:when>
+															<c:otherwise>
+																<label> <input type="radio" value=${r.id } name="role" />${r.name } </label><br>
+															</c:otherwise>
+														</c:choose>
+													</c:forEach>
 												</div>
-
 											</div>
 
 											<div class="form-group">

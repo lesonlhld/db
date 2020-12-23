@@ -73,8 +73,7 @@
 													<td>${list.buyTime }</td>
 													<td class="center">${list.status.name }</td>
 													<td>
-														<a href="<c:url value='/admin/order/edit?id=${list.id }'/>" class="center">Edit</a> | 
-														<a href="<c:url value='/admin/order/delete?id=${list.id }'/>" class="center">Delete</a>
+														<a href="<c:url value='/admin/orderItem/order?id=${list.id }'/>" class="center">View Order</a>
 													</td>
 												</tr>
 											</c:forEach>

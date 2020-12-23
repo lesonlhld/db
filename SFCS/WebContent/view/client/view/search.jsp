@@ -48,16 +48,16 @@
 	</div>
 	<!--/end panel group-->
 
-	<div class="panel-group" id="accordion-v2">
+	<div class="panel-group" id="accordion-v3">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h2 class="panel-title">
-					<a data-toggle="collapse" data-parent="#accordion-v2" href="#collapseTwo">
+					<a data-toggle="collapse" data-parent="#accordion-v3" href="#collapseThree">
 						Thương Hiệu <i class="fa fa-angle-down"></i>
 					</a>
 				</h2>
 			</div>
-			<div id="collapseTwo" class="panel-collapse collapse in">
+			<div id="collapseThree" class="panel-collapse collapse in">
 				<div class="panel-body">
 					<ul class="list-unstyled checkbox-list">
 						<c:forEach items="${stallList }" var="s">
@@ -71,6 +71,7 @@
 	
 	<!--/end panel group-->
 
+<!--/
 	<div class="panel-group" id="accordion-v4">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -90,9 +91,9 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>-->
 	<!--/end panel group-->
-
+	<!--/
 	<div class="panel-group margin-bottom-30" id="accordion-v5">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -120,6 +121,7 @@
 			</div>
 		</div>
 	</div>
+-->
 	<!--/end panel group-->
 	<button type="button" class="btn-u btn-brd btn-brd-hover btn-u-lg btn-u-sea-shop btn-block">Đặt Lại</button>
 </div>

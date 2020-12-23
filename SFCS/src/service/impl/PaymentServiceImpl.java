@@ -11,16 +11,16 @@ public class PaymentServiceImpl implements PaymentService {
 	PaymentDao paymentDao = new PaymentDaoImpl();
 
 	@Override
-	public void insert(Payment category) {
-		paymentDao.insert(category);
+	public void insert(Payment payment) {
+		paymentDao.insert(payment);
 
 	}
 
 	@Override
 	public void edit(Payment newPayment) {
-		Payment oldCate = paymentDao.get(newPayment.getId());
-		oldCate.setName(newPayment.getName());
-		paymentDao.edit(oldCate);
+		Payment oldPayment = paymentDao.get(newPayment.getId());
+		oldPayment.setName(newPayment.getName());
+		paymentDao.edit(oldPayment);
 
 	}
 

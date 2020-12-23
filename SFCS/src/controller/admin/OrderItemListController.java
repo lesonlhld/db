@@ -30,7 +30,7 @@ public class OrderItemListController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	List<CartItem> listCartItem =cartItemService.getAll();
 	req.setAttribute("listCartItem", listCartItem);
-	RequestDispatcher dispatcher = req.getRequestDispatcher("/view/admin/view/list-order.jsp");
+	RequestDispatcher dispatcher = req.getRequestDispatcher("/view/admin/view/list-orderItem.jsp");
 	dispatcher.forward(req, resp);
 	}
 	

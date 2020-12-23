@@ -84,7 +84,8 @@ public class CartItemDaoImpl extends JDBCConnection implements CartItemDao {
 	}
 
 	@Override
-	public CartItem get(int id) {
+	public List<CartItem> get(int id) {
+		List<CartItem> cartItemList = new ArrayList<CartItem>();
 		String sql = "SELECT oi.order_id, oi.quantity, oi.unit_price, o.user_id, o.order_time, o.order_date, o.order_status_id, p.product_name, p.price " 
 				+ "FROM order_items oi, orders o, products p "
 				+ "WHERE oi.order_id = o.order_id AND oi.product_id = p.product_id AND oi.order_id = ?";
@@ -100,6 +101,7 @@ public class CartItemDaoImpl extends JDBCConnection implements CartItemDao {
 				OrderStatus status = statusDao.get(rs.getInt("order_status_id"));
 				
 				Cart cart = new Cart();
+				cart.setId(id);
 				cart.setBuyer(user);
 				cart.setBuyDate(rs.getDate("order_date"));
 				cart.setBuyTime(rs.getTime("order_time"));
@@ -115,8 +117,9 @@ public class CartItemDaoImpl extends JDBCConnection implements CartItemDao {
 				cartItem.setQuantity(rs.getInt("quantity"));
 				cartItem.setUnitPrice(rs.getInt("unit_price"));
 				
-				return cartItem;
+				cartItemList.add(cartItem);
 			}
+			return cartItemList;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -160,10 +163,11 @@ public class CartItemDaoImpl extends JDBCConnection implements CartItemDao {
 				cartItemList.add(cartItem);
 
 			}
+			return cartItemList;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return cartItemList;
+		return null;
 	}
 
 	public List<CartItem> search(String name) {

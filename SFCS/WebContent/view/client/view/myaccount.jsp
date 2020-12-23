@@ -112,7 +112,7 @@
 			<!--=== End Breadcrumbs v4 ===-->
 		
 			<!--=== Information ===-->
-			<div class="log-reg-v3 content-md margin-bottom-30">
+			<div class="log-reg-v4 content-md margin-bottom-30">
 				<div class="container bootstrap snippet">
 					<form class="form" action="${myaccount}" method="post"
 								id="registrationForm" enctype="multipart/form-data">

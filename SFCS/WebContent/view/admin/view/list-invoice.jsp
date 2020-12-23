@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Order Management</title>
+<title>Invoice Management</title>
 <!-- BOOTSTRAP STYLES-->
 <link href="${url}/css/bootstrap.css" rel="stylesheet" />
 <!-- FONTAWESOME STYLES-->
@@ -35,7 +35,7 @@
 			<div id="page-inner">
 				<div class="row">
 					<div class="col-md-12">
-						<h2>Order Management</h2>
+						<h2>Invoice Management</h2>
 					</div>
 				</div>
 				<!-- /. ROW  -->
@@ -55,8 +55,8 @@
 												<th>Index</th>
 												<th>Invoice ID</th>
 												<th>Buyer</th>
-												<th>Order Date</th>
-												<th>Order Time</th>
+												<th>Invoice Date</th>
+												<th>Invoice Time</th>
 												<th>Voucher</th>
 												<th>Total Money</th>
 												<th>Payment Method</th>
@@ -77,8 +77,7 @@
 													<td>${list.totalMoney }</td>
 													<td>${list.paymentMethod.name }</td>
 													<td>
-														<a href="<c:url value='/admin/invoice/edit?id=${list.id }'/>" class="center">Edit</a> | 
-														<a href="<c:url value='/admin/invoice/delete?id=${list.id }'/>" class="center">Delete</a>
+														<a href="<c:url value='/admin/orderItem/order?id=${list.cart.id }'/>" class="center">View Order</a>
 													</td>
 												</tr>
 											</c:forEach>

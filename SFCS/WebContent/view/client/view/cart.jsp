@@ -23,7 +23,7 @@
 							<button type="button" class="close">×</button></a>
 					<div class="overflow-h">
 						<span>${map.value.product.name }</span> 
-						<small>${map.value.quantity } * <f:formatNumber value="${map.value.product.price }" type="currency"/></small>
+						<small>${map.value.quantity } * <f:formatNumber value="${map.value.product.price*(100 - map.value.product.discount) / 100 }" type="currency"/></small>
 					</div>
 				</li>
 			</c:forEach>
@@ -33,7 +33,7 @@
 					<span>Tổng tiền</span>
 					<c:set var="total" value="${0}" />
 					<c:forEach items="${sessionScope.cart}" var="map">
-						<c:set var="total" value="${total + map.value.quantity * map.value.product.price}" />
+						<c:set var="total" value="${total + map.value.quantity * (map.value.product.price*(100 - map.value.product.discount) / 100 )}" />
 					</c:forEach>
 					<span class="pull-right subtotal-cost"><f:formatNumber value="${total}" type="currency"/></span>	
 				</div>

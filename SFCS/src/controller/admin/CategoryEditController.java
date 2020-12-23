@@ -17,6 +17,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import model.Category;
+import model.Payment;
 import model.User;
 import service.CategoryService;
 import service.UserService;
@@ -45,13 +46,30 @@ public class CategoryEditController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html; charset=UTF-8");
 		req.setCharacterEncoding("UTF-8");
-		
+
 		Category category = new Category();
-		category.setId(Integer.parseInt(req.getParameter("id")));
-		category.setName(req.getParameter("name"));
-		cateService.edit(category);
+		DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
+		ServletFileUpload servletFileUpload = new ServletFileUpload(diskFileItemFactory);
 		
-		resp.sendRedirect(req.getContextPath()+"/admin/category/list");
+		try {
+			List<FileItem> items = servletFileUpload.parseRequest(req);
+
+			for (FileItem item : items) {
+				if (item.getFieldName().equals("id")) {
+					category.setId(Integer.parseInt(item.getString()));
+				} else if (item.getFieldName().equals("name")) {
+					category.setName(item.getString("UTF-8"));
+				}		
+			}
+
+			cateService.edit(category);
+
+			resp.sendRedirect(req.getContextPath() + "/admin/category/list");
+		} catch (FileUploadException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 }

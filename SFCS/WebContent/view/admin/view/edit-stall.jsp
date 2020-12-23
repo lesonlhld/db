@@ -43,7 +43,9 @@
 								<div class="row">
 									<div class="col-md-6">
 										<h3>Stall:</h3>
-										<form role="form" action="add" method="post" enctype="multipart/form-data">
+										<c:url value="/admin/stall/edit" var="edit"></c:url>
+										<form role="form" action="${edit }" method="post" enctype="multipart/form-data">
+											<input name="id" value="${stall.id }" hidden="">
 											<div class="form-group">
 												<label>Stall Name:</label> <input class="form-control"
 													value="${stall.name }" name="name" />

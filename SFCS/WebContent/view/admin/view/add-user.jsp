@@ -39,6 +39,7 @@
 						<!-- Form Elements -->
 						<div class="panel panel-default">
 							<div class="panel-heading">Add User</div>
+							<h3 style="color: red;"> ${errMsg}</h3>
 							<div class="panel-body">
 								<div class="row">
 									<div class="col-md-6">
@@ -68,27 +69,29 @@
 											<div class="form-group">
 												<label>Gender:</label>
 												<div class="checkbox">
-													<label> <input type="radio" value="M" name="gender" checked="checked"/>Male</label> 
+													<label> <input type="radio" value="M" name="gender"/>Male</label> 
 													<br> <label> <input type="radio" value="F" name="gender"/>Female</label>
 												</div>
 											</div>
 											<div class="form-group">
 												<label>Email:</label> <input class="form-control"
 													placeholder="Please enter email" name="email" />
-											</div>											
+											</div>
+											<div class="form-group">
+												<label>Phone:</label> <input class="form-control"
+													placeholder="Please enter phone number" name="phone" />
+											</div>
+											<div class="form-group">
+												<label>Address:</label> <input class="form-control"
+													placeholder="Please enter address" name="address" />
+											</div>									
 											<div class="form-group">
 												<label>Role:</label>
 												<div class="checkbox">
-													<label> <input type="radio" value="1" name="role"/>Customer</label>
-													<br>
-													<label> <input type="radio" value="2" name="role" />Admin</label>
-													<br>
-													<label> <input type="radio" value="3" name="role" />Cook</label>
-													<br>
-													<label> <input type="radio" value="4" name="role" />Vendor</label>
-													<br>
-													<label> <input type="radio" value="5" name="role" />Manager</label>																										
-												</div>												
+													<c:forEach items="${roleList }" var="r">
+														<label> <input type="radio" value=${r.id } name="role" />${r.name } </label><br>
+													</c:forEach>
+												</div>								
 											</div>
 											<div class="form-group">
 												<label>Avatar</label> <input type="file" name="avatar" />

@@ -32,7 +32,7 @@
 
                         <!-- Menu -->
                         <li class="dropdown mega-menu-fullwidth">
-                            <a href="${pageContext.request.contextPath }/product/list" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
+                            <a href="${pageContext.request.contextPath }/product/list" class="dropdown-toggle" data-hover="dropdown" >
                                 Thực đơn
                             </a>
                              <ul class="dropdown-menu">
@@ -98,7 +98,7 @@
                         
                         <!-- Brand -->
                         <li class="dropdown mega-menu-fullwidth">
-                            <a href="${pageContext.request.contextPath }/product/list" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
+                            <a href="${pageContext.request.contextPath }/product/list" class="dropdown-toggle" data-hover="dropdown">
                                 Thương Hiệu
                             </a>
                              <ul class="dropdown-menu">
