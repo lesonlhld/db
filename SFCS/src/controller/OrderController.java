@@ -60,8 +60,8 @@ public class OrderController extends HttpServlet {
         long amount = 0;
         
         String orderInfo = "Thanh toán với MoMo";
-        String returnURL = "http://leson.j.layershift.co.uk/";
-        String notifyURL = "http://leson.j.layershift.co.uk/";
+        String returnURL = "http://localhost:8080/SFCS";
+        String notifyURL = "http://localhost:8080/SFCS";
         String extraData = "";
         // String bankCode = "SML";
 
