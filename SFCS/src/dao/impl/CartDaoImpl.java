@@ -127,6 +127,8 @@ public class CartDaoImpl extends JDBCConnection implements CartDao {
 				Cart cart = new Cart();
 				cart.setId(rs.getInt("order_id"));
 				cart.setBuyTime(rs.getTime("order_time"));
+				System.out.println(rs.getTime("order_time"));
+				System.out.println(new Time(rs.getTime("order_time").getTime()));
 				cart.setBuyDate(rs.getDate("order_date"));
 				cart.setStatus(status);
 				cart.setBuyer(user);

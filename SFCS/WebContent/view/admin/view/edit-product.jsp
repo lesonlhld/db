@@ -73,7 +73,14 @@
 												<div class="checkbox">
 													<select name="category">
 														<c:forEach items="${categories}" var="c">
-															<option value="${c.id}">${c.name}</option>
+															<c:choose>
+																<c:when test="${c.id == product.category.id}">
+																	<option value="${c.id}" selected>${c.name}</option>
+																</c:when>
+																<c:otherwise>
+																	<option value="${c.id}">${c.name}</option>
+																</c:otherwise>
+															</c:choose>
 														</c:forEach>
 													</select>
 												</div>
@@ -83,7 +90,14 @@
 												<div class="checkbox">
 													<select name="stall">
 														<c:forEach items="${stalls}" var="s">
-															<option value="${s.id}">${s.name}</option>
+															<c:choose>
+																<c:when test="${s.id == product.stall.id}">
+																	<option value="${s.id}" selected>${s.name}</option>
+																</c:when>
+																<c:otherwise>
+																	<option value="${s.id}">${s.name}</option>
+																</c:otherwise>
+															</c:choose>
 														</c:forEach>
 													</select>
 												</div>

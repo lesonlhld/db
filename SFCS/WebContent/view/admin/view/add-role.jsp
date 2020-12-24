@@ -8,7 +8,7 @@
 <script src="<c:url value="/ckeditor/ckeditor.js" />"></script>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Edit Stall</title>
+<title>Add Role</title>
 <!-- BOOTSTRAP STYLES-->
 <link href="${url}/css/bootstrap.css" rel="stylesheet" />
 <!-- FONTAWESOME STYLES-->
@@ -29,7 +29,7 @@
 			<div id="page-inner">
 				<div class="row">
 					<div class="col-md-12">
-						<h2>Edit Stall</h2>
+						<h2>Add Role</h2>
 					</div>
 				</div>
 				<!-- /. ROW  -->
@@ -38,31 +38,17 @@
 					<div class="col-md-12">
 						<!-- Form Elements -->
 						<div class="panel panel-default">
-							<div class="panel-heading">Edit Stall</div>
+							<div class="panel-heading">Add Role</div>
 							<div class="panel-body">
 								<div class="row">
 									<div class="col-md-6">
-										<h3>Stall:</h3>
-										<c:url value="/admin/stall/edit" var="edit"></c:url>
-										<form role="form" action="${edit }" method="post" enctype="multipart/form-data">
-											<input name="id" value="${stall.id }" type="text" hidden="">
+										<h3>Role:</h3>
+										<form role="form" action="add" method="post">
 											<div class="form-group">
-												<label>Stall Name:</label> <input class="form-control"
-													value="${stall.name }" name="name" />
+												<label>Role Name:</label> <input class="form-control"
+													placeholder="Please enter Role Name" name="name" />
 											</div>
-											<div class="form-group">
-												<label>Number of items:</label> <input class="form-control"
-													value="${stall.item }" type="number" name="item" />
-											</div>																							
-											<div class="form-group">
-												<label>Description:</label>
-												<br>
-												<textarea rows="4" cols="50" name="des" id="editer"></textarea>
-											</div>
-											<div class="form-group">
-												<label>Image</label> <input type="file" name="image"/>
-											</div>											
-											<button type="submit" class="btn btn-default">Edit</button>
+											<button type="submit" class="btn btn-default">Add</button>
 											<button type="reset" class="btn btn-primary">Reset</button>
 										</form>
 									</div>
@@ -92,8 +78,6 @@
 	<script src="${url}/js/jquery.metisMenu.js"></script>
 	<!-- CUSTOM SCRIPTS -->
 	<script src="${url}/js/custom.js"></script>
-<script type="text/javascript" language="javascript">
-   CKEDITOR.replace('editer', {width: '700px',height: '300px'});
-</script>
+
 </body>
 </html>

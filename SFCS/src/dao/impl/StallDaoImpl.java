@@ -32,7 +32,7 @@ public class StallDaoImpl extends JDBCConnection implements StallDao {
 
 	@Override
 	public void edit(Stall stall) {
-		String sql = "UPDATE stalls SET stall_name = ?, item_quantity = ?, description = ?, image = ?, WHERE stall_id = ?";
+		String sql = "UPDATE stalls SET stall_name = ?, item_quantity = ?, description = ?, image = ? WHERE stall_id = ?";
 		Connection con = super.getJDBCConnection();
 
 		try {
@@ -66,7 +66,7 @@ public class StallDaoImpl extends JDBCConnection implements StallDao {
 	public Stall get(int id) {
 		String sql = "SELECT * FROM stalls WHERE stall_id = ?";
 		Connection con = super.getJDBCConnection();
-
+		
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, id);

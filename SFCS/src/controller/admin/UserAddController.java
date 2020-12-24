@@ -62,12 +62,12 @@ public class UserAddController extends HttpServlet {
 					user.setEmail(item.getString());
 				} else if (item.getFieldName().equals("username")) {
 					user.setUsername(item.getString());
+				} else if (item.getFieldName().equals("password")) {
+					user.setPassword(item.getString());
 				} else if (item.getFieldName().equals("firstname")) {
 					user.setFirstname(item.getString("UTF-8"));
 				} else if (item.getFieldName().equals("lastname")) {
 					user.setLastname(item.getString("UTF-8"));
-				} else if (item.getFieldName().equals("password")) {
-					user.setPassword(item.getString());
 				} else if (item.getFieldName().equals("gender")) {
 					user.setGender(item.getString());
 				} else if (item.getFieldName().equals("birthday")) {

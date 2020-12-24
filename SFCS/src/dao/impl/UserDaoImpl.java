@@ -18,7 +18,9 @@ public class UserDaoImpl extends JDBCConnection implements UserDao {
 	@Override
 	public void insert(User user) {
 		int roleId=0;
-		String sql = "INSERT INTO users(first_name, last_name, username, password, email, birth_date, gender, avatar, role_id) VALUES (?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO users(first_name, last_name, username, password, "
+				+ "email, birth_date, phone, address, gender, avatar, role_id) "
+				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 		Connection con = super.getJDBCConnection();
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -28,8 +30,10 @@ public class UserDaoImpl extends JDBCConnection implements UserDao {
 			ps.setString(4, user.getPassword());
 			ps.setString(5, user.getEmail());
 			ps.setDate(6, Date.valueOf(user.getBirthday()));
-			ps.setString(7, user.getGender());
-			ps.setString(8, user.getAvatar());
+			ps.setString(7, user.getPhone());
+			ps.setString(8, user.getAddress());
+			ps.setString(9, user.getGender());
+			ps.setString(10, user.getAvatar());
 			try {
 				if(user.getRoleId() == 2) {
 					roleId = 2;
@@ -40,7 +44,7 @@ public class UserDaoImpl extends JDBCConnection implements UserDao {
 			} catch (Exception e) {
 				roleId = 1;
 			}
-			ps.setInt(9, roleId);
+			ps.setInt(11, roleId);
 		
 			ps.executeUpdate();
 		} catch (SQLException e) {

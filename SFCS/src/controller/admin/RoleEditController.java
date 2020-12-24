@@ -16,16 +16,17 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import model.Stall;
+import model.Role;
+import model.Payment;
 import model.User;
-import service.StallService;
+import service.RoleService;
 import service.UserService;
-import service.impl.StallServiceImpl;
+import service.impl.RoleServiceImpl;
 import service.impl.UserServiceImpl;
 
-@WebServlet(urlPatterns = { "/admin/stall/edit" })
-public class StallEditController extends HttpServlet {
-	StallService stallService = new StallServiceImpl();
+@WebServlet(urlPatterns = { "/admin/role/edit" })
+public class RoleEditController extends HttpServlet {
+	RoleService cateService = new RoleServiceImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,11 +34,11 @@ public class StallEditController extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		
 		String id = req.getParameter("id");
-		Stall stall = stallService.get(Integer.parseInt(id));
+		Role role = cateService.get(Integer.parseInt(id));
 		
-		req.setAttribute("stall", stall);
+		req.setAttribute("role", role);
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/view/admin/view/edit-stall.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/view/admin/view/edit-role.jsp");
 		dispatcher.forward(req, resp);
 	}
 
@@ -45,8 +46,8 @@ public class StallEditController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html; charset=UTF-8");
 		req.setCharacterEncoding("UTF-8");
-		
-		Stall stall = new Stall();
+
+		Role role = new Role();
 		DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
 		ServletFileUpload servletFileUpload = new ServletFileUpload(diskFileItemFactory);
 		
@@ -55,38 +56,15 @@ public class StallEditController extends HttpServlet {
 
 			for (FileItem item : items) {
 				if (item.getFieldName().equals("id")) {
-					stall.setId(Integer.parseInt(item.getString()));
+					role.setId(Integer.parseInt(item.getString()));
 				} else if (item.getFieldName().equals("name")) {
-					stall.setName(item.getString("UTF-8"));
-				} else if (item.getFieldName().equals("item")) {
-					stall.setItem(Integer.parseInt(item.getString()));
-				} else if (item.getFieldName().equals("des")) {
-					stall.setDes(item.getString("UTF-8"));				
-				} else if (item.getFieldName().equals("image")) {
-					if (item.getSize() > 0) {// neu co file d
-						String root = System.getProperty("user.home");
-						File path = new File(root + "/uploads");
-						if (!path.exists()) {
-							boolean status = path.mkdirs();
-						}
-						String originalFileName = item.getName();
-						int index = originalFileName.lastIndexOf(".");
-						String ext = originalFileName.substring(index + 1);
-						String fileName = System.currentTimeMillis() + "." + ext;
-						File file = new File(path + "/" + fileName);
-						item.write(file);
-
-						stall.setImage(fileName);
-
-					} else {
-						stall.setImage(null);
-					}
-				}
+					role.setName(item.getString("UTF-8"));
+				}		
 			}
 
-			stallService.edit(stall);
+			cateService.edit(role);
 
-			resp.sendRedirect(req.getContextPath() + "/admin/stall/list");
+			resp.sendRedirect(req.getContextPath() + "/admin/role/list");
 		} catch (FileUploadException e) {
 			e.printStackTrace();
 		} catch (Exception e) {

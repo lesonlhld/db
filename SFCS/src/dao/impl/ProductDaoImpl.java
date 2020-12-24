@@ -23,8 +23,8 @@ public class ProductDaoImpl extends JDBCConnection implements ProductDao {
 
 	@Override
 	public void insert(Product product) {
-		//String sql = "INSERT INTO products(product_name, price, quantity, discount, category_id, stall_id, description, image) VALUES (?,?,?,?,?,?,?,?)";
-		String sql = "CALL insert_product(?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO products(product_name, price, quantity, discount, category_id, stall_id, description, image) VALUES (?,?,?,?,?,?,?,?)";
+		//String sql = "CALL insert_product(?,?,?,?,?,?,?,?)";
 		Connection con = super.getJDBCConnection();
 
 		try {
